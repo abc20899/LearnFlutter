@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'dart:convert';
 import 'dart:math';
+import 'package:english_words/english_words.dart';
+
+import 'package:flutter_first/test_net.dart'; //引入 english_words包
 
 //一、变量声明
 //1、var一种不指定类型声明变量的方式，也可以指定变量类型。
@@ -738,6 +741,17 @@ class Spacecraft3 {
 // ...
 }
 
+void testArr1(){
+  const loadingTag = "##loading##"; //表尾标记
+  var _words = <String>[loadingTag];
+  _words.insertAll(
+      _words.length - 1,
+      //每次生成20个单词
+      generateWordPairs().take(20).map((e) => e.asPascalCase).toList());//转换为list
+
+  print(_words); // loadingTag 会添加到表尾
+}
+
 void main() {
   print('Hello World!');
   print(img.values);
@@ -772,6 +786,7 @@ void main() {
   testc2();
   testc4();
   testc5();
+  testArr1();
 }
 
 /**

@@ -40,11 +40,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -68,6 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            FlatButton(
+              onPressed: () {
+                //导航到新路由
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) {
+                  return new NewPage();
+                }));
+              },
+              child: new Text('open new route'),
+              textColor: Colors.blue,
+            ),
           ],
         ),
       ),
@@ -90,3 +96,42 @@ class _MyHomePageState extends State<MyHomePage> {
 //   第一个Text widget显示固定文本 “You have pushed the button this many times:”，第二个Text widget显示_counter状态的数值。
 //7、floatingActionButton是页面右下角的带“➕”的悬浮按钮，它的onPressed属性接受一个回调函数，代表它被点击后的处理器，
 //   本例中直接将_incrementCounter作为其处理函数。
+
+//8、MaterialPageRoute继承自PageRoute类，PageRoute类是一个抽象类，表示占有整个屏幕空间的一个模态路由页面，
+//  它还定义了路由构建及切换时过渡动画的相关接口及属性。MaterialPageRoute 是Material组件库的一个Widget，它可以针对不同平台，
+//  实现与平台页面切换动画风格一致的路由切换动画：
+//  如果想自定义路由切换动画，可以自己继承PageRoute来实现，我们将在后面介绍动画时，实现一个自定义的路由Widget。
+
+//9、Navigator是一个路由管理的widget，它通过一个栈来管理一个路由widget集合
+//   Future push(BuildContext context, Route route)  打开新的页面
+//   bool pop(BuildContext context, [ result ])  将栈顶路由出栈
+//   Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil等
+
+/**
+ * 注册路由表
+    routes:{
+      "new_page":(context)=>NewRoute(),
+    } ,
+   通过路由名打开新路由页
+   Navigator.pushNamed(context, "new_page");
+
+   在打开路由时传递参数
+   Navigator.of(context).pushNamed("new_page", arguments: "hi");
+
+   获取路由参数
+   var args = ModalRoute.of(context).settings.arguments
+ * */
+
+class NewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: new Text('New Route'),
+      ),
+      body: new Center(
+        child: new Text('this is a new page'),
+      ),
+    );
+  }
+}
