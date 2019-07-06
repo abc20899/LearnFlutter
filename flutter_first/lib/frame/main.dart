@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'BottomTabBarWidget.dart';
-import 'PageFirstWidget.dart';
-import 'TopTabBarWidget.dart';
+import 'bottom_tabbar_widget.dart';
+import 'page_first_widget.dart';
+import 'top_tabbar_widget.dart';
 
 void main() => runApp(new TestApp());
 

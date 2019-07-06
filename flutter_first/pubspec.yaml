@@ -35,13 +35,17 @@ dependencies:
   flutter_spinkit: ^3.1.0  #list加载框
   flutter_redux: ^0.5.3    #数据共享框架
   redux: ^3.0.0            #数据共享框架
-  connectivity: ^0.4.3+1   #发现网络连接并相应地进行自我配置wifi蜂窝 http://47.75.70.92/packages/connectivity/versions/0.4.1#-readme-tab-
+  connectivity: ^0.4.3+1   #发现网络连接并相应地进行自我配置wifi蜂窝 http://47.75.70.92/packages/connectivity
   event_bus:  ^1.1.0       # http://47.75.70.92/packages/event_bus
   fluttertoast: ^3.0.1     # http://47.75.70.92/packages/fluttertoast
   shared_preferences: ^0.5.1+1  #http://47.75.70.92/packages/shared_preferences
   flutter_swiper: ^1.1.6   #http://47.75.70.92/packages/flutter_swiper
   sqflite: ^1.1.5          #https://github.com/tekartik/sqflite/
   flutter_screenutil: ^0.4.0
+  rxdart: ^0.22.0          #https://pub.dev/packages/rxdart#-installing-tab-
+  flutter_bloc: ^0.18.3    #https://pub.dev/packages/flutter_bloc
+  pull_to_refresh: ^1.4.6
+
 
 
 dev_dependencies:
@@ -66,8 +70,14 @@ flutter:
   assets:
     - assets/images/wechat_icon.png
     - assets/images/lingjingru.jpeg
+    - assets/images/facebook.png
+    - assets/images/google_plus.png
+    - assets/images/instagram.png
+    - assets/images/linkedin.png
+    - assets/images/twitter.png
 #    - images/a_dot_ham.jpeg
     - assets/config.json
+    - jsons/data.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -86,9 +96,10 @@ flutter:
          - asset: assets/fonts/DancingScript-Regular.ttf
          - asset: assets/fonts/DancingScript-Bold.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+     - family: Pacifico
+       fonts:
+         - asset: assets/fonts/Pacifico-Regular.ttf
+           weight: 400
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

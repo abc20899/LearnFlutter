@@ -2,12 +2,11 @@ import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_first/models/video_list_entity.dart';
 import 'dart:convert';
 import 'package:flutter_first/net/http.dart';
 import 'package:flutter_first/utils/screen_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'models/banner_entity.dart';
-import 'models/video_list_entity.dart';
 
 //var BASE_URL = "https://api.moviefanclub.cn/dayu/";
 

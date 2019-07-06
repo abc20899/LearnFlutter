@@ -44,9 +44,9 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
 
   @override
   void initState() {
-    //监听
+    ///通知监听
     this.control.needLoadMore?.addListener(() {
-      //延迟两秒等待确认
+      ///延迟两秒等待确认
       try {
         Future.delayed(Duration(seconds: 2), () {
           _scrollController.notifyListeners();
@@ -55,13 +55,13 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
         print(e);
       }
     });
-    //滑动监听
+    ///滑动监听
     _scrollController.addListener(() {
-      //是否滚动到底部
+      ///是否滚动到底部
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (this.control.needLoadMore.value) {
-          this.onLoadMore?.call(); //加载更多
+          this.onLoadMore?.call(); //调用加载更多
         }
       }
     });
@@ -194,6 +194,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
 }
 
 class PullLoadWidgetControl {
+
   ///数据，对齐增减，不能替换
   List dataList = new List();
 

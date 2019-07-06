@@ -1,0 +1,76 @@
+使用Bloc允许我们将应用程序分为三层：
+
+Data 数据层  数据层的职责是从一个或多个源检索/操作数据
+   Data Provider 数据提供者 数据提供程序通常会公开简单的API来执行CRUD操作。我们可能将createData，readData，
+               updateData和deleteData方法作为数据层的一部分
+   Repository  数据仓库 存储库层是Bloc Layer与之通信的一个或多个数据提供者的包装器
+
+Business Logic 业务逻辑 将bloc层视为用户界面（表示层）和数据层之间的桥梁。bloc层接受用户输入生成的事件，
+               然后与存储库通信，以便为表示层构建新的状态以供使用。
+
+Presentation   表示层
+
+class DataProvider {
+    Future<RawData> readData() async {
+        // Read from DB or make network request etc...
+    }
+}
+
+
+class Repository {
+    final DataProviderA dataProviderA;
+    final DataProviderB dataProviderB;
+
+    Future<Data> getAllDataThatMeetsRequirements() async {
+        final RawDataA dataSetA = await dataProviderA.readData();
+        final RawDataB dataSetB = await dataProviderB.readData();
+
+        final Data filteredData = _filterData(dataSetA, dataSetB);
+        return filteredData;
+    }
+}
+
+class BusinessLogicComponent extends Bloc {
+    final Repository repository;
+
+    Stream mapEventToState(event) async* {
+        if (event is AppStarted) {
+            yield await repository.getAllDataThatMeetsRequirements();
+        }
+    }
+}
+
+bloc与bloc之间通信
+class MyBloc extends Bloc {
+  final OtherBloc otherBloc;
+  StreamSubscription otherBlocSubscription;
+
+  MyBloc(this.otherBloc) {
+    otherBlocSubscription = otherBloc.state.listen((state) {
+        // React to state changes here.
+        // Dispatch events here to trigger changes in MyBloc.
+    });
+  }
+
+  @override
+  void dispose() {
+    otherBlocSubscription.cancel();
+    super.dispose();
+  }
+}
+
+
+class PresentationComponent {
+    final Bloc bloc;
+
+    PresentationComponent() {
+        bloc.dispatch(AppStarted());
+    }
+
+    build() {
+        // render UI based on bloc state
+    }
+}
+
+
+

@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
 
-import 'package:flutter_first/test_net.dart'; //引入 english_words包
-
 //一、变量声明
 //1、var一种不指定类型声明变量的方式，也可以指定变量类型。
 //2、没有初始化的变量自动获取一个默认值为 null。类型为数字的 变量如何没有初始化其值也是 null，不要忘记了 数字类型也是对象。
@@ -787,6 +785,9 @@ void main() {
   testc4();
   testc5();
   testArr1();
+
+  List<dynamic> list = json.decode('["国产剧"]');
+  print(list[0]);
 }
 
 /**

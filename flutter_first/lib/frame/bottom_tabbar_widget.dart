@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'JuneTabBarWidget.dart';
-import 'PageFirstWidget.dart';
+import 'june_tabbar_widget.dart';
+import 'page_first_widget.dart';
 
 class BottomTabBarWidget extends StatefulWidget {
   @override

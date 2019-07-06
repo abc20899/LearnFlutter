@@ -19,6 +19,26 @@ flutter run
 flutter format <filename>
 flutter build apk
 flutter install
+flutter analyze  #分析错误
+flutter doctor -v
+
+
+
+### web开发
+克隆Flutter Web代码仓库
+git clone https://github.com/flutter/flutter_web.git
+cd flutter_web/examples/hello_world
+flutter pub get
+webdev serve
+使用浏览器打开http://localhost:8080
+webdev serve --hostname 0.0.0.0
+
+https://github.com/flutter/flutter_web
+要安装webdev软件包（为Flutter for web提供构建工具）
+flutter pub global activate webdev
+flutter pub upgrade
+webdev serve
+
 
 使用终端代理
 export http_proxy=http://127.0.0.1:54660
@@ -104,16 +124,6 @@ https://github.com/CarGuo/GSYGithubAppFlutter
 
 https://github.com/brianegan/flutter_architecture_samples
 
-
-
-Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-//            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-//              Image.asset('assets/images/wechat_icon.png'),
-              Text(list[i])
-            ],
-          )
 
 
 
