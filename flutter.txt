@@ -124,7 +124,8 @@ https://github.com/CarGuo/GSYGithubAppFlutter
 
 https://github.com/brianegan/flutter_architecture_samples
 
-
+# advanced-flutter-project
+https://steemit.com/utopian-io/@tensor/advanced-flutter-project---best-practices---generic-bloc-providers---part-three
 
 
 

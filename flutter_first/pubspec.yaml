@@ -45,7 +45,8 @@ dependencies:
   rxdart: ^0.22.0          #https://pub.dev/packages/rxdart#-installing-tab-
   flutter_bloc: ^0.18.3    #https://pub.dev/packages/flutter_bloc
   pull_to_refresh: ^1.4.6
-
+  encrypt: ^3.2.0
+  crypto: ^2.0.6
 
 
 dev_dependencies:
