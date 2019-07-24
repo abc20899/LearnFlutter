@@ -4,7 +4,6 @@ https://flutter.dev/community/china
 git clone -b master https://github.com/flutter/flutter.git
 flutter upgrade
 
-
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
@@ -12,7 +11,6 @@ git clone -b dev https://github.com/flutter/flutter.git
 export PATH="$PWD/flutter/bin:$PATH"
 cd ./flutter
 flutter doctor
-
 flutter help
 flutter devices
 flutter run
@@ -21,7 +19,6 @@ flutter build apk
 flutter install
 flutter analyze  #分析错误
 flutter doctor -v
-
 
 
 ### web开发
@@ -40,26 +37,36 @@ flutter pub upgrade
 webdev serve
 
 
-使用终端代理
+# 使用终端代理
 export http_proxy=http://127.0.0.1:54660
 export https_proxy=http://127.0.0.1:54660
 
 
-学习资源
+# 学习资源
 http://www.devio.org/2018/09/09/awesome-flutter/
 https://itsallwidgets.com/
 https://book.flutterchina.club/chapter8/listener.html
 
 
-ios设置
+# ios设置 真机运行
+## 模拟器
 xcrun simctl list 列设备
 xcrun simctl boot "simctl列表中的模拟器名"
 在flutter项目中执行  open ios/Runner.xcworkspace  打开功能
 flutter run
+## 真机  https://flutter.dev/docs/get-started/install/macos
+flutter doctor
+1、open ios/Runner.xcworkspace 打开xocode工程
+2、Select the 'Runner' project in the navigator then the 'Runner' target
+in the project settings
+3、In the 'General' tab, make sure a 'Development Team' is selected
+在flutter工程下 右键工程open ios module in xcode
+
+CocoaPods 1.7.4 is available.
+To update use: `sudo gem install cocoapods`
 
 
-
-插件开发
+# 插件开发
 1、flutter create --template=plugin wechat
 - android // Android 相关原生代码目录
 - ios // ios 相关原生代码目录
@@ -101,7 +108,6 @@ Element
 
 
 二、常用库
-
 dependencies:
   json_annotation: ^2.0.0  #json序列化库
   dio: ^2.1.7 #网络库
@@ -113,9 +119,7 @@ dev_dependencies:
 
 
 三、学习
-
 https://book.flutterchina.club/
-
 https://rodydavisjr.com/2019/03/12/making-a-piano/
 https://github.com/AppleEducate/flutter_piano
 
