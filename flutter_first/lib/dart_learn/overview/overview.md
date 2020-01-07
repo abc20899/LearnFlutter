@@ -66,10 +66,83 @@ Set
 Rune (用于在字符串中表示 Unicode 字符)
 Symbol
 ```
+##### Number
+Number有 int 和 double两种类型
 
+```
+var x = 1;
+var hex = 0xDEADBEEF;
+var y = 1.1;
+var exponents = 1.42e5;
+double x = 1; //int 字面量会自动转换成 double 类型
+//String -> int
+var one = int.parse('1');
+//String -> double
+var pointX = double.parse('1.1');
+//int -> String
+String oneAsStr = 1.toString();
+//double -> String
+String piAsString = 3.14.toStringAsFixed(2);
+```
 
+##### String
+* 用' '或者" "创建
 
+```
+var s1 = 'Single quotes'
+var s2 = "Double quotes"
+var s3 = 'It\'s easy to' //转义\
+var s4 = "It's even easier"
+```
+* ${表达式}
 
+```
+var s = 'string interpolation';
+var s2 = 'ss ${s}';
+```
+* == 运算符用来测试两个对象是否相等
+
+```
+var ss1 = 'String concatenation';
+print(ss1 == 'String concatenation'); //true
+```
+
+* 三个单引号或者三个双引号实现多行字符串对象的创建
+
+```
+var sss1 = '''
+you can create
+multi-line strings like this one.
+''';
+print(sss1);
+```
+* 使用 r 前缀，可以创建 “原始 raw” 字符串：
+
+```
+var s = r"In a raw string, even \n isn't special.";
+
+```
+
+##### Boolean
+使用bool类型表示布尔值 true flase
+
+##### List
+
+```
+var list = [1,2,3]; //推断为 List<int>
+print(list.length);
+print(list[1]);
+//在 List 字面量之前添加 const 关键字，可以定义 List 类型的编译时常量
+var constantList = const [1,2,3];
+```
+
+##### Set
+set 唯一、无序的集合
+
+```
+var setStr = {'book','desk','door'}; //推断为Set<String> 类型
+
+```
 
 
 
