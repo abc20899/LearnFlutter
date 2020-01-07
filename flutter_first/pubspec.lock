@@ -99,6 +99,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "6.6.0"
+  chacha20:
+    dependency: "direct main"
+    description:
+      name: chacha20
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   charcode:
     dependency: transitive
     description:
