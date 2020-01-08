@@ -3,12 +3,19 @@ dart安装:
    https://dart.dev/get-dart
 
 flutter安装:
+1、直接下载
+https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.2.1-stable.zip
+2、git安装
 https://flutter.dev/community/china
 git clone -b master https://github.com/flutter/flutter.git
 flutter upgrade
 
+flutter 文档
+https://flutter.cn/docs/get-started/
+
 Flutter 切换发布渠道 https://flutter.cn/docs/development/tools/sdk/upgrading
 Flutter 有 4个发布渠道，分别是 stable, beta, dev, 和 master。我们推荐使用 stable
+如果在第二步卡主可以在flutter根目录下执行 git checkout stable
 flutter channel
 flutter channel stable
 flutter upgrade

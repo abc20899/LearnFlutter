@@ -1,3 +1,6 @@
+### dart文档
+[中文文档](https://www.dartcn.com/guides/language/language-tour)
+
 ### 重要的概念
 * 变量即对象，并对应一个类的实例，数字，函数和 null 都是对象。所有对象继承自 Object 类
 * 尽管 Dart 是强类型的，但是 Dart 可以推断类型
@@ -134,6 +137,7 @@ print(list.length);
 print(list[1]);
 //在 List 字面量之前添加 const 关键字，可以定义 List 类型的编译时常量
 var constantList = const [1,2,3];
+//constantList[1] = 1; //错误
 ```
 
 ##### Set
@@ -141,8 +145,120 @@ set 唯一、无序的集合
 
 ```
 var setStr = {'book','desk','door'}; //推断为Set<String> 类型
+//创建一个空集
+var names1 = <String>{} //{}前必须指定类型
+Set<String> names2 = {}; //指定类型
+var names3 = {}; //此创建了一个map类型 Map<dynamic, dynamic> 
+//add  addAll 添加元素
+var elements = <String>{};
+elements.add('hello');
+//const 创建运行时常量
+final constanstSet = const {
+ 'flo',
+ 'wer',
+ 'wey'
+};
+```
+
+##### Map
 
 ```
+//创建并初始化
+var gifts = {
+    'first': 'apple',
+    'second': 'cup',
+    'fifth': 'car'
+}; //Map<String,String>
+var weeks = {
+  1:'Monday',
+  2:'Tuesday'
+};//Map<int, String> 
+
+//使用Map构造函数创建
+var gifts2 = Map();
+gifts2['11'] = 'AA';
+gifts2['22'] = 'BB';
+
+var weeks2 = Map();
+weeks2[1] = 'Monday';
+weeks2[2] = 'Tuesday';
+
+//添加键值对、获取键值对
+gifts2['fourth'] = 'bike';
+var gift1 = gifts2['first'];
+
+//如果map不包所要查找的key，则返回null
+//length获取长度
+//创建map运行时常量
+final constantMap = const {
+	2:'Two',
+	3:'Three'
+};
+```
+
+### 函数 Function类型
+* 函数可以被赋值给变量或者作为参数传递给其他函数。 也可以把 Dart 类的实例当做方法来调用。
+
+```
+int sum(int a,int b){
+  return a + b;
+}
+//如果函数中只有一句表达式，可以使用简写语法
+int sum2(int a, int b) => a + b;
+
+```
+##### 参数
+* 函数有两种参数类型: required 和 optional。 required 类型参数在参数最前面， 随后是 optional 类型参数。 
+
+1、 可选命名参数
+
+```
+//可选命名参数 使用"{}"包围的参数属于可选命名参数
+void _buildThree(int num, {String name, int range}) {
+}
+
+//可选参数设置默认值
+void _buildThree(int num, {String name, int range = 10}) {
+}
+
+//调用时，使用paramName:value的形式指定为哪个可选参数赋值
+_buildThree(10,range: 1);
+```
+
+2、 可选位置参数<br>
+在方法参数中，使用"[]"包围的参数属于可选位置参数
+
+```
+void _buildHouse(int num, [String where, int range]) {
+}
+  
+void _buildHouseAndDefaultValue(int num, 
+[String where = 'Shanghai', int range]) {
+
+}
+//调用包含可选位置参数的方法时，无需使用paramName:value的形式
+_buildHouse(10,10); //不可行的
+_buildHouse(10,'shenzhen',10); //可行的
+_buildHouseAndDefaultValue(10,10); //不可行的
+_buildHouseAndDefaultValue(10,'shenzhen',10); //可行的
+```
+
+3、默认参数值
+
+```
+//list或map可以作为默认值传递
+void doStuff(
+    {List<int> list = const [1, 2, 3],
+    Map<String, String> gifts = const {
+      'first': 'paper',
+      'second': 'cotton',
+      'third': 'leather'
+    }}) {
+  print('list:  $list');
+  print('gifts: $gifts');
+}
+```
+
 
 
 
