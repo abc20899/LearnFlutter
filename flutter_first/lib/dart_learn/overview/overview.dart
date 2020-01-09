@@ -70,4 +70,19 @@ multi-line strings like this one.
   }
 
   int sum2(int a, int b) => a + b;
+
+  var list1 = [1, 2, 3, 4, 5, 6];
+  list1.forEach(printElement);
+
+  var upLitter = (msg) => '!!! ${msg.toUpperCase()} !!!';
+  print(upLitter('hello'));
+
+  var list2 = ['apple', 'bananas', 'oranges'];
+  list2.forEach((item) {
+    print('${list2.indexOf(item)} : ${item}');
+  });
+}
+
+void printElement(int element) {
+  print(element);
 }
