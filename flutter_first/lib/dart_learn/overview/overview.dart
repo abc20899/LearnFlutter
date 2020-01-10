@@ -1,4 +1,6 @@
 /*********************************** Dart 编程语言概览  ***********************************/
+import 'dart:math';
+
 //////////一个简单的 Dart 程序//////////
 // 定义一个函数
 void printInteger(int aNumber) {
@@ -81,8 +83,122 @@ multi-line strings like this one.
   list2.forEach((item) {
     print('${list2.indexOf(item)} : ${item}');
   });
+
+  testConstPoint();
+  getClassType();
+  testSuper();
 }
 
 void printElement(int element) {
   print(element);
+}
+
+////////// 定义类Class //////////
+class Point {
+  var x = 0.0;
+  var y = 0.0;
+
+  Point(this.x, this.y);
+
+  //命令构造函数
+  Point.formJson(Map json) {
+    x = json['x'];
+    y = json['y'];
+  }
+}
+
+void testPoint() {
+  var p = Point(0, 0);
+  p.x = 1.1;
+  p?.y = 2.0;
+
+  var p2 = Point.formJson({'x': 1.2, 'y': 2.3});
+}
+
+////////// 定义常量构造函数 //////////
+class ImmutablePoint {
+  //变量定义为final
+  final x;
+  final y;
+
+  //常量构造函数
+  const ImmutablePoint(this.x, this.y);
+
+  static final origin = const ImmutablePoint(0.0, 0.0);
+}
+
+void testConstPoint() {
+  //创建一个常量对象
+  const a = ImmutablePoint(1, 1);
+  const b = ImmutablePoint(1, 1);
+  print(a == b); //true
+
+  //创建一个非常量对象
+  var aa = ImmutablePoint(2, 2);
+  var bb = ImmutablePoint(2, 2);
+  print(aa == bb); //false
+}
+
+////////// 获取类的类型 //////////
+void getClassType() {
+  var p = Point(0, 0);
+  print(p.runtimeType); //Point
+}
+
+////////// 如果父类中没有匿名无参的构造函数， 则需要手工调用父类的其他构造函数 //////////
+class Person {
+  Person.fromJson(Map data) {
+    print('in person');
+  }
+}
+
+class Student extends Person {
+  Student.fromJson(Map data) : super.fromJson(data) {
+    print('in student');
+  }
+}
+
+void testSuper() {
+  var li = Student.fromJson({});
+  //in person
+  //in student
+}
+
+////////// 在构造函数体执行之前初始化实例变量 //////////
+class Point2 {
+  num x, y;
+
+  Point2.fromJson(Map data)
+      : x = data['x'],
+        y = data['y'] {
+    print('In Point.fromJson(): ($x, $y)');
+  }
+
+  Point2.withAssert(this.x, this.y) : assert(x > 0) {
+    print('In Point.withAssert(): ($x, $y)');
+  }
+}
+
+////////// 使用初始化列表可以很方便的设置 final 字段 //////////
+//使用初始化列表可以很方便的设置 final 字段
+class Point3 {
+  final num x;
+  final num y;
+  final num distanceFromOrigin;
+
+  Point3(x, y, distanceFromOrigin)
+      : x = x,
+        y = y,
+        distanceFromOrigin = sqrt(x * x + y * y);
+}
+
+////////// 重定向构造函数 //////////
+class Point4 {
+  num x, y;
+
+  //主构造函数
+  Point4(this.x, this.y);
+
+  //重定向函数 指向主构造函数
+  Point4.alongXAxis(num x) : this(x, 0);
 }

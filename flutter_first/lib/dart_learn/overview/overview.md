@@ -431,10 +431,160 @@ try {
 }
 ```
 ### 类
+Dart 是一种基于类和 mixin 继承机制的面向对象的语言
+##### 使用 (.) 来引用实例对象的变量和方法
+##### 使用 ?. 来代替 . ， 可以避免因为左边对象可能为 null
+##### 实例变量会生成隐式getter方法，非final会生成setter方法
 
+```
+class Point{
+  var x = 0.0;
+  var y = 0.0;
+}
 
+void testPoint(){
+  var p = Point();
+  p.x = 1.1;
+  //使用 ?. 来代替 . ， 可以避免因为左边对象可能为 null
+  // 如果 p 为 non-null，设置它变量 y 的值为 4。
+  p?.y = 4;
+}
+```
+##### 构造函数
+* 默认构造函数 默认构造函数没有参数并会调用父类的无参构造函数。
+* 构造函数不被继承
+* 命名构造函数  使用命名构造函数可为一个类实现多个构造函数
+* 构造函数不能够被继承， 这意味着父类的命名构造函数不会被子类继承。 如果希望使用父类中定义的命名构造函数创建子类， 就必须在子类中实现该构造函数。*
 
+```
+class Point {
+  var x = 0.0;
+  var y = 0.0;
 
+  Point(this.x, this.y);
+
+  //命名构造函数
+  Point.formJson(Map json) {
+    x = json['x'];
+    y = json['y'];
+  }
+}
+
+void testPoint() {
+  var p = Point(0, 0);
+  p.x = 1.1;
+  p?.y = 2.0;
+
+  var p2 = Point.formJson({'x': 1.2, 'y': 2.3});
+}
+```
+##### 常量构造函数
+如果你的类提供一个状态不变的对象，你可以把这些对象 定义为编译时常量。要实现这个功能，需要定义一个 const 构造函数,并且声明所有类的变量为 final。
+
+```
+class ImmutablePoint {
+  //变量定义为final
+  final x;
+  final y;
+
+  //常量构造函数
+  const ImmutablePoint(this.x, this.y);
+
+  static final origin = const ImmutablePoint(0.0, 0.0);
+}
+
+void testConstPoint() {
+  //创建一个常量对象
+  const a = ImmutablePoint(1, 1);
+  const b = ImmutablePoint(1, 1);
+  print(a == b); //true
+
+  //创建一个非常量对象
+  var aa = ImmutablePoint(2, 2);
+  var bb = ImmutablePoint(2, 2);
+  print(aa == bb); //false
+}
+```
+##### 获取对象的类型
+使用对象的 runtimeType 属性，可以在运行时获取对象的类型,返回一个Type对象。
+
+```
+void getClassType() {
+  var p = Point(0, 0);
+  print(p.runtimeType); //Point
+}
+```
+##### 调用父类非默认构造函数
+默认情况下，子类的构造函数会自动调用父类的默认构造函数（匿名，无参数）。 父类的构造函数在子类构造函数体开始执行的位置被调用。 如果提供了一个 initializer list （初始化参数列表）， 则初始化参数列表在父类构造函数执行之前执行。<br>
+
+1、initializer list （初始化参数列表）<br>
+2、superclass’s no-arg constructor （父类的无名构造函数）<br>
+3、main class’s no-arg constructor （主类的无名构造函数）<br>
+
+```
+//如果父类中没有匿名无参的构造函数， 则需要手工调用父类的其他构造函数
+class Person {
+  Person.fromJson(Map data) {
+    print('in person');
+  }
+}
+
+class Student extends Person {
+  Student.fromJson(Map data) : super.fromJson(data) {
+    print('in student');
+  }
+}
+
+void testSuper() {
+  var li = Student.fromJson({});
+  //in person
+  //in student
+}
+```
+##### 初始化列表
+在构造函数体执行之前初始化实例变量。 各参数的初始化用逗号分隔。
+
+```
+class Point2 {
+  num x, y;
+
+  Point2.fromJson(Map data)
+      : x = data['x'],
+        y = data['y'] {
+    print('In Point.fromJson(): ($x, $y)');
+  }
+
+  Point2.withAssert(this.x, this.y) : assert(x > 0) {
+    print('In Point.withAssert(): ($x, $y)');
+  }
+}
+
+//使用初始化列表可以很方便的设置 final 字段
+class Point3 {
+  final num x;
+  final num y;
+  final num distanceFromOrigin;
+
+  Point3(x, y, distanceFromOrigin)
+      : x = x,
+        y = y,
+        distanceFromOrigin = sqrt(x * x + y * y);
+}
+```
+##### 重定向构造函数
+有时构造函数的唯一目的是重定向到同一个类中的另一个构造函数,重定向构造函数的函数体为空， 构造函数的调用在冒号 (:) 之后。
+
+```
+class Point4 {
+  num x, y;
+
+  //主构造函数
+  Point4(this.x, this.y);
+
+  //重定向函数 指向主构造函数
+  Point4.alongXAxis(num x) : this(x, 0);
+}
+```
 
 
 
