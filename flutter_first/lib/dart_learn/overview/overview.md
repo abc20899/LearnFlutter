@@ -585,8 +585,79 @@ class Point4 {
   Point4.alongXAxis(num x) : this(x, 0);
 }
 ```
+##### 工厂构造函数
+当执行构造函数并不总是创建这个类的一个新实例时，则使用 factory 关键字<br>
+工厂构造函数无法访问 this
 
+```
+class Logger {
+  final String name;
 
+  static final _cache = Map<String, Logger>();
+
+  bool mute = false;
+
+  Logger._internal(this.name); //命名构造函数
+
+  factory Logger(String name) {
+    //工厂构造函数
+    if (_cache.containsKey(name)) {
+      return _cache[name];
+    } else {
+      final logger = Logger._internal(name);
+      _cache[name] = logger;
+      return logger;
+    }
+  }
+
+  void log(String msg) {
+    if (!mute) print(msg);
+  }
+}
+
+var logger = Logger('UI');
+logger.log('Button click');
+```
+
+##### Getter 和 Setter
+```
+class Rectangle {
+  num left, top, width, height;
+
+  Rectangle(this.left, this.top, this.width, this.height);
+
+  //两个计算属性 right bottom
+  num get right => left + width;
+
+  num get bottom => top + height;
+
+  set right(num value) => left = value - width;
+
+  set bottom(num value) => top = value - height;
+}
+
+void testRectangle() {
+  var rect = Rectangle(3, 4, 15, 20);
+  print(rect.left); // 3
+  rect.right = 13;
+  print(rect.left); // -2
+}
+```
+
+##### 抽象类
+抽象类不能实例化。 抽象类通常用来定义接口，以及部分实现。 如果希望抽象类能够被实例化，那么可以通过定义一个 工厂构造函数 来实现。
+
+```
+abstract class Doer {
+  void doSomething(); //抽象方法
+}
+
+class EffectiveDoer extends Doer {
+  void doSomething() {
+    print('');
+  }
+}
+```
 
 
 
